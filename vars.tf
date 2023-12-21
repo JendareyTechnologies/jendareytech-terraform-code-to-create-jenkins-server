@@ -1,7 +1,24 @@
+variable "REGION" {
+  default = "us-east-1"
+}
+
+variable "ZONE1" {
+  default = "us-east-1a"
+}
+
+variable "ZONE2" {
+  default = "us-east-1b"
+}
+
+variable "INSTANCE" {
+  type    = list(string)
+  default = ["t2.small", "t2.medium", "t2.micro"]
+}
+
 variable "vpc_name" {
   description = "Name of the VPC"
   type        = string
-  default     = "jendarey_vpc"
+  default     = "jendarey"
 }
 
 variable "vpc_cidr" {
