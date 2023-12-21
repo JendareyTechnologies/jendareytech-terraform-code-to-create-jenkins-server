@@ -1,26 +1,21 @@
-data "aws_ami" "latest-amazon-linux-image" {
-  most_recent = true
-  owners      = ["amazon"]
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
-  }
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
-resource "aws_instance" "myapp-server" {
-  ami                         = data.aws_ami.latest-amazon-linux-image.id
-  instance_type               = var.instance_type
-  key_name                    = "jenkins-server"
-  subnet_id                   = aws_subnet.myapp-subnet-1.id
-  vpc_security_group_ids      = [aws_default_security_group.default-sg.id]
-  availability_zone           = var.avail_zone
-  associate_public_ip_address = true
-  user_data                   = file("jenkins-server-script.sh")
+# Resource: EC2 Instance
+resource "aws_instance" "jendarey-instance" {
+  ami                    = data.aws_ami.ubuntu_ami.id
+  instance_type          = var.INSTANCE[2]
+  key_name               = "automationkey"
+  user_data              = file("${pateh.module}/jenkins-server-script.sh")
+  availability_zone      = var.ZONE1
+  subnet_id              = aws_subnet.jendarey_public_subnet_a.id
+  vpc_security_group_ids = [aws_security_group.jendarey-security_group.id]
+  depends_on             = [aws_vpc.jendarey_vpc]
+  for_each               = toset(var.COUNT)
+  
   tags = {
-    Name = "${var.env_prefix}-server"
+    Name    = each.value
+    Project = "Jendarey"
+  }
+
+  root_block_device {
+    volume_size = 10
   }
 }
