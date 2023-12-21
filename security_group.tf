@@ -1,7 +1,6 @@
 resource "aws_default_security_group" "jendarey-default-sg" {
   vpc_id      = aws_vpc.jendarey_vpc.id
-  description = "Allow incoming traffic on ports 22, and 8080."
-
+ 
   // Ingress rules (incoming traffic)
   ingress {
     from_port   = 22
