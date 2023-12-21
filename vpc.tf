@@ -80,10 +80,11 @@ resource "aws_route_table_association" "jendarey-pub-2-a" {
 
 resource "aws_nat_gateway" "jendarey-nat-gw" {
   allocation_id = aws_eip.jendarey-nat-eip.id
-  subnet_id     = aws_subnet.jendarey_public_subnet_a.id 
+  subnet_id     = aws_subnet.jendarey_public_subnet_a.id
   tags = {
     Name = "jendarey-nat-gw"
   }
 }
 
 resource "aws_eip" "jendarey-nat-eip" {}
+
