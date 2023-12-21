@@ -1,5 +1,5 @@
 # AWS Security Group with Ingress and Egress Rules
-resource "aws_security_group" "jendarey-security_group" {
+resource "aws_security_group" "jendarey-security-group" {
   vpc_id      = module.jendarey_vpc.vpc_id
   name        = "jendarey-security-group"
   description = "Allow incoming traffic on ports 22, and 8080,"
