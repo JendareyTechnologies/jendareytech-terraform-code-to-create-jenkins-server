@@ -40,7 +40,15 @@ sudo apt update && sudo apt install terraform
 
 
 # install kubectl
+# Download kubectl
+sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.29.0/bin/linux/amd64/kubectl
 
-sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+# Make kubectl executable
 sudo chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+
+# Create directory for kubectl and move it
+sudo mkdir -p $HOME/bin && sudo cp ./kubectl $HOME/bin/kubectl
+
+# Add kubectl to the PATH
+export PATH=$PATH:$HOME/bin
+
