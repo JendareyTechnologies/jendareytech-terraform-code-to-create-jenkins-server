@@ -3,7 +3,7 @@ resource "aws_instance" "jendarey-instance" {
   ami                    = data.aws_ami.ubuntu_ami.id
   instance_type          = var.INSTANCE[2]
   key_name               = "automationkey"
-  user_data              = file("${pateh.module}/jenkins-server-script.sh")
+  user_data              = file("${path.module}/jenkins-server-script.sh")
   availability_zone      = var.ZONE1
   subnet_id              = aws_subnet.jendarey_public_subnet_a.id
   vpc_security_group_ids = [aws_security_group.jendarey-security_group.id]
