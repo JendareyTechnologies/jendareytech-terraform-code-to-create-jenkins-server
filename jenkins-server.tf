@@ -12,6 +12,6 @@ resource "aws_instance" "jenkins-server-instance" {
   tags = {
     Name        = "jenkins-server-instance"
     Terraform   = "true"
-    Environment = "prod"
+    Environment = "production-server-eks"
   }
 }
