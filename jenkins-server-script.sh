@@ -30,8 +30,6 @@ sudo systemctl daemon-reload
 # Enable and start Jenkins service
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
-sudo systemctl status jenkins
-
 
 # install terraform
 
