@@ -28,6 +28,6 @@ variable "PRIV_KEY" {
 }
 
 variable "COUNT" {
-  type = list(string)
+  type    = list(string)
   default = ["jendarey-dev", "jendarey-prod"]
 }
