@@ -9,6 +9,7 @@ sudo timedatectl set-timezone America/Chicago
 # Install necessary packages
 sudo apt-get update
 sudo apt-get install tree git wget openjdk-17-jdk -y
+sudo apt-get install -y awscli
 
 # Add Jenkins repository
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
