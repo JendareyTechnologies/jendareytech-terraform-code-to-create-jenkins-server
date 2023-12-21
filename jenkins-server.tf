@@ -9,7 +9,7 @@ resource "aws_instance" "jendarey-instance" {
   vpc_security_group_ids = [aws_security_group.jendarey-security_group.id]
   depends_on             = [aws_vpc.jendarey_vpc]
   for_each               = toset(var.COUNT)
-  
+
   tags = {
     Name    = each.value
     Project = "Jendarey"
