@@ -33,9 +33,10 @@ resource "aws_iam_instance_profile" "jenkins_profile" {
 
 # Associate the IAM instance profile with the Jenkins EC2 instance
 resource "aws_instance" "jenkins_instance_server" {
-  iam_instance_profile = aws_iam_instance_profile.jenkins_profile.name
-}
+  # ... other instance configuration ...
 
+  iam_instance_profile = aws_iam_instance_profile.jenkins_profile.arn
+}
 
 
 
