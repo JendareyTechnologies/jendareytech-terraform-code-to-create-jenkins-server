@@ -5,8 +5,8 @@ resource "aws_instance" "jenkins-server-instance" {
   key_name                    = "automationkey"
   user_data                   = file("${path.module}/jenkins-server-script.sh")
   monitoring                  = true
-  associate_public_ip_address = true  
-  subnet_id                   = aws_subnet.jendarey_public_subnet_a.id  
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.jendarey_public_subnet_a.id
   vpc_security_group_ids      = [aws_default_security_group.jendarey-default-sg.id]
   iam_instance_profile        = aws_iam_instance_profile.jenkins_profile.arn
 
@@ -17,7 +17,6 @@ resource "aws_instance" "jenkins-server-instance" {
   }
 }
 
-# Define the IAM role in Terraform
 resource "aws_iam_role" "jenkins_eks_role" {
   name = "jenkins_eks_role"
 
@@ -28,7 +27,7 @@ resource "aws_iam_role" "jenkins_eks_role" {
     {
       "Action": "sts:AssumeRole",
       "Principal": {
-        "Service": "ec2.amazonaws.com"  # Assuming Jenkins runs on an EC2 instance
+        "Service": "ec2.amazonaws.com"
       },
       "Effect": "Allow",
       "Sid": ""
@@ -41,7 +40,7 @@ EOF
 # Attach necessary policies to the IAM role
 resource "aws_iam_role_policy_attachment" "jenkins_eks_full_access" {
   role       = aws_iam_role.jenkins_eks_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"  # Full access policy
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy" # Full access policy
 }
 
 # Define the IAM instance profile
@@ -49,4 +48,5 @@ resource "aws_iam_instance_profile" "jenkins_profile" {
   name = "jenkins_profile"
   role = aws_iam_role.jenkins_eks_role.name
 }
+
 
