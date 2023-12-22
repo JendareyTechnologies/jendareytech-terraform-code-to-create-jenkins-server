@@ -40,7 +40,7 @@ EOF
 # Attach necessary policies to the IAM role
 resource "aws_iam_role_policy_attachment" "jenkins_eks_full_access" {
   role       = aws_iam_role.jenkins_eks_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy" # Full access policy
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy" 
 }
 
 # Define the IAM instance profile
